@@ -1,11 +1,10 @@
 version: '3.8'
 
 services:
-  imconecta_web:
-    image: php:7.4-apache
+  web:
+    # IMPORTANTE: Esto le obliga a usar tu Dockerfile
+    build: .
     container_name: imconecta_web
     ports:
       - "8082:80"
-    volumes:
-      - ./httpdocs:/var/www/html
     restart: always
