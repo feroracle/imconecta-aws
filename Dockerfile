@@ -1,12 +1,8 @@
-# Usamos la imagen base de PHP con Apache
-FROM php:7.4-apache
+# Usamos Nginx, que es el estándar para webs estáticas (muy ligero)
+FROM nginx:alpine
 
-# Copiamos TU código dentro de la carpeta pública del contenedor
-COPY ./httpdocs /var/www/html/
+# Copiamos tu carpeta httpdocs a la carpeta donde Nginx busca los archivos
+COPY ./httpdocs /usr/share/nginx/html
 
-# Le damos permisos al usuario www-data (Apache) para que pueda leerlos
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
-
-# Abrimos el puerto 80 del contenedor
+# Exponemos el puerto 80 (el estándar de la web)
 EXPOSE 80
