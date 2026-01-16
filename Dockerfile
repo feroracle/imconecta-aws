@@ -1,10 +1,8 @@
-version: '3.8'
+# 1. Usamos Nginx (el servidor web ligero)
+FROM nginx:alpine
 
-services:
-  web:
-    # Esta línea es la magia: Le dice que use el Dockerfile que ya creaste
-    build: .
-    # Aquí forzamos el puerto, ignorando lo que diga Coolify
-    ports:
-      - "8082:80"
-    restart: always
+# 2. Copiamos tus archivos HTML dentro del servidor
+COPY ./httpdocs /usr/share/nginx/html
+
+# 3. Abrimos el puerto 80 (interno del contenedor)
+EXPOSE 80
