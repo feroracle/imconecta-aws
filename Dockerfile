@@ -1,8 +1,10 @@
-# Usamos Nginx, que es el estándar para webs estáticas (muy ligero)
-FROM nginx:alpine
+version: '3.8'
 
-# Copiamos tu carpeta httpdocs a la carpeta donde Nginx busca los archivos
-COPY ./httpdocs /usr/share/nginx/html
-
-# Exponemos el puerto 80 (el estándar de la web)
-EXPOSE 80
+services:
+  web:
+    # Esta línea es la magia: Le dice que use el Dockerfile que ya creaste
+    build: .
+    # Aquí forzamos el puerto, ignorando lo que diga Coolify
+    ports:
+      - "8082:80"
+    restart: always
